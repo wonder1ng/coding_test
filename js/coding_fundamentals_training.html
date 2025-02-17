@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>코딩 기초 트레이닝</title>
+    <script>
+      // 배열의 원소만큼 추가하기
+      // https://school.programmers.co.kr/learn/courses/30/lessons/181861?language=javascript
+      // 내 풀이
+      function solution(arr) {
+        answer = [];
+        arr.forEach((num) => {
+          for (let i = 0; i < num; i++) {
+            answer.push(num);
+          }
+        });
+        return answer;
+      }
+
+      // 타인 풀이
+      function solution(arr) {
+        return arr.flatMap((n) => Array(n).fill(n));
+      }
+      // Array.flatMap(() => {}): map과 비슷하지만 최종 적으로 1차원 베열로 반환
+      // Array.fill(value, start, number): vlaue로 index start부터(포함) number까지(미포함) 채움(대체)
+      // 풀이는 길이 n의 배열을 생성 후 그 전체를 n으로 채움
+    </script>
+    <script>
+      // 첫 번째로 나오는 음수
+      // https://school.programmers.co.kr/learn/courses/30/lessons/181896?language=javascript
+      // 내 풀이
+      function solution(num_list) {
+        answer = num_list.filter((v, i) => v < 0);
+        return answer[0] ? num_list.indexOf(answer[0]) : -1;
+      }
+
+      // 타인 풀이
+      function solution(num_list) {
+        num_list.findIndex((v) => v < 0);
+      }
+      // Array.findIndex((value, index, array) => {}): 조건 만족 시 그 차례의 인덱스 반환. 조건 만족 요소 부재 시 -1 반환
+    </script>
+  </head>
+  <body></body>
+</html>
