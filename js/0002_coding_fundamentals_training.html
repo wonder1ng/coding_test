@@ -39,6 +39,20 @@
       }
       // Array.findIndex((value, index, array) => {}): 조건 만족 시 그 차례의 인덱스 반환. 조건 만족 요소 부재 시 -1 반환
     </script>
+    <script>
+      // l로 만들기
+      // https://school.programmers.co.kr/learn/courses/30/lessons/181834?language=javascript
+      // 내 풀이
+      function solution(myString) {
+        return [...myString].map(v => "abcdefghijk".includes(v) ? "l" : v).join("");
+      }
+
+      // 타인 풀이
+      function solution(myString) {
+        return [...myString].map((v) => v < 'l' ? 'l' : v).join('');
+      }
+      // js에서는 알파벳의 유니코드 값으로 비교한다고 함.
+    </script>
   </head>
   <body></body>
 </html>
