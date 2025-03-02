@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>완주하지 못한 선수</title>
+    <script>
+      // https://school.programmers.co.kr/learn/courses/30/lessons/42576?language=javascript
+      // 내 풀이
+      // 시도 - 1: 실패(효율성 실패)
+      // 의도: delete 성공 시 true 반환 이용하여 중복 해결
+      function solution(participant, completion) {
+        return participant.filter((v) =>
+          completion.includes(v)
+            ? !delete completion[completion.indexOf(v)]
+            : true
+        )[0];
+      }
+      // 시도 - 2: 성공
+      // 의도: delete 미사용, reduce 사용으로 효율성 개선
+      function solution(participant, completion) {
+        obj = participant.reduce((p, v) => {
+          p[v] = p[v] ? p[v] + 1 : 1;
+          return p;
+        }, {});
+        completion.reduce((p, v) => {
+          p[v] -= 1;
+          return p;
+        }, obj);
+        return Object.entries(obj).filter((v) => v[1])[0][0];
+      }
+      // 타인 풀이
+      // 코드 작성자: 새(원작자는 아니지만 가독성 있는 코드로 바꿔주심)
+      // 느낀 점: 1. 이항 연산자(++, --)에 익숙해지자. 2. reduce여도 반복을 줄이는 게 빠르다.
+      var solution = (participant, completion) =>
+        participant.find(
+          (name) => !completion[name]--,
+          completion.map(
+            (name) => (completion[name] = (completion[name] | 0) + 1)
+          )
+        );
+    </script>
+  </head>
+  <body></body>
+</html>
