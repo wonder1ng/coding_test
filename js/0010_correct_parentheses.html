@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>올바른 괄호</title>
+    <script>
+      // https://school.programmers.co.kr/learn/courses/30/lessons/12909?language=javascript
+      // 내 풀이
+      // 시도 - 1: 성공
+      // 의도: 괄호 개수 비교
+      function solution(s) {
+        var answer = 0;
+        for (i of s.split("")) {
+          if (i === "(") answer++;
+          else {
+            answer--;
+          }
+          if (answer < 0) return false;
+        }
+        return answer === 0 ? true : false;
+      }
+
+      // 타인 풀이: 비슷하여 미기재
+    </script>
+  </head>
+  <body></body>
+</html>
