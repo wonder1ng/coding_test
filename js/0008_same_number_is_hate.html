@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>같은 숫자는 싫어</title>
+    <script>
+      // https://school.programmers.co.kr/learn/courses/30/lessons/12906?language=javascript
+      // 내 풀이
+      // 시도 - 1: 실패(효율성 실패)
+      // 의도: reduce로 앞뒤 값 비교
+      // 원인: at이라서
+      function solution(arr) {
+        return arr.reduce((p, c) => (p.at(-1) === c ? p : [...p, c]), [arr[0]]);
+      }
+      function solution(arr) {
+        return arr.reduce(
+          (p, c) => {
+            if (p.at(-1) === c) return p;
+            else p.push(c);
+            return p;
+          },
+          [arr[0]]
+        );
+      }
+      // 시도 - 2: 성공
+      // 의도: 그냥 for문으로 시도
+      // 배운 점: js는 map이나 reduce가 python처럼 극적인 연산 속도에 도움되지 않음
+      function solution(arr) {
+        let answer = [arr[0]];
+        let j = answer[0];
+        for (i of arr) {
+          if (j !== i) {
+            answer.push(i);
+            j = i;
+          }
+        }
+        return answer;
+      }
+      // 타인 풀이
+      // 배운 점: 연산 속도 개선하려면 코드 자체가 좋아야 함.
+      function solution(arr) {
+        return arr.filter((val, index) => val != arr[index + 1]);
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
