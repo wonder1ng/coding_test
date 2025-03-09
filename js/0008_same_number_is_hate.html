@@ -7,7 +7,7 @@
       // 내 풀이
       // 시도 - 1: 실패(효율성 실패)
       // 의도: reduce로 앞뒤 값 비교
-      // 원인: at이라서
+      // 원인: reduce가 python처럼 속도가 빠를 것이라 믿고 at을 남용.
       function solution(arr) {
         return arr.reduce((p, c) => (p.at(-1) === c ? p : [...p, c]), [arr[0]]);
       }
