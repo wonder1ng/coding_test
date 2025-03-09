@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>가능 개발</title>
+    <script>
+      // https://school.programmers.co.kr/learn/courses/30/lessons/42586?language=javascript
+      // 내 풀이
+      // 시도 - 1: 성공공
+      // 의도: 완료 날짜 계산하며 값이 작을 경우 합치고 클 경우 push 후 1부터 시작
+      function solution(progresses, speeds) {
+        var answer = [];
+        let completes = 1;
+        let days = parseInt((100 - progresses[0]) / speeds[0] + 0.999999);
+        for (let i = 1; i < progresses.length; i++) {
+          let compare = parseInt((100 - progresses[i]) / speeds[i] + 0.999999);
+          if (compare > days) {
+            answer.push(completes);
+            days = compare;
+            completes = 1;
+          } else {
+            completes++;
+          }
+        }
+        answer.push(completes);
+        return answer;
+      }
+
+      // 타인 풀이
+      // 배운 점: Math.ceil. 버림만 생각하고 올림을 생각 못 함
+      function solution(progresses, speeds) {
+        let answer = [0];
+        let days = progresses.map((progress, index) =>
+          Math.ceil((100 - progress) / speeds[index])
+        );
+        let maxDay = days[0];
+
+        for (let i = 0, j = 0; i < days.length; i++) {
+          if (days[i] <= maxDay) {
+            answer[j] += 1;
+          } else {
+            maxDay = days[i];
+            answer[++j] = 1;
+          }
+        }
+
+        return answer;
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
