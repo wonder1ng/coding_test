@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>가장 큰 수</title>
+    <script>
+      // https://school.programmers.co.kr/learn/courses/30/lessons/42746?language=javascript
+      // 내 풀이
+      // 시도 - 1: 실패
+      // 의도: padding으로 자릿값 맞춘 후 비교
+      // 원인: [1, 1000]과 [9, 9, 98]에 대한 문제
+      function solution(numbers) {
+        return numbers
+          .sort(
+            (a, b) =>
+              Number(b.toString().padEnd(4, 0)) -
+              Number(a.toString().padEnd(4, 0))
+          )
+          .join("");
+      }
+      // 시도 - 2: 성공
+      // 의도: 합친 값으로 비교
+      function solution(numbers) {
+        return numbers
+          .map((v) => v.toString())
+          .sort((a, b) => b + a - (a + b))
+          .join("")
+          .replace(/^0+/, "0");
+      }
+      // 타인 풀이: 미기재
+    </script>
+  </head>
+  <body></body>
+</html>

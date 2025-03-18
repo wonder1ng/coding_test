@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>k번째 수</title>
+    <script>
+      // https://school.programmers.co.kr/learn/courses/30/lessons/42748?language=javascript
+      // 내 풀이
+      // 시도 - 1: 성공
+      // 의도: 문제 그대로 구현
+      // 배운 점: sort는 기존 array에 대한 변경, sort()는 문자열처럼 비교
+      function solution(array, commands) {
+        return commands.map(
+          ([s, e, i]) =>
+            [...array].splice(s - 1, e - s + 1).sort((a, b) => a - b)[i - 1]
+        );
+      }
+      // 타인 풀이: 미기재
+    </script>
+  </head>
+  <body></body>
+</html>
