@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>H-index</title>
+    <script>
+      // https://school.programmers.co.kr/learn/courses/30/lessons/42747?language=javascript
+      // 내 풀이
+      // 시도 - 1: 성공
+      // 의도: 기준 값 이상인 값 개수 확인
+      function solution(citations) {
+        var answer = 0;
+        const max = Math.min(Math.max(...citations), citations.length);
+        for (let i = 1; i <= max; i++) {
+          if (i <= citations.filter((v) => i <= v).length) answer = i;
+        }
+        return answer;
+      }
+
+      // 타인 풀이: 비슷하여 미기재
+      function solution(citations) {
+        let i = 0;
+        citations.sort((a, b) => b - a);
+        while (i + 1 <= citations[i]) i++;
+        return i;
+      }
+      console.log(solution([9, 10, 10, 10, 10, 10, 10, 10, 10, 10]));
+    </script>
+  </head>
+  <body></body>
+</html>
