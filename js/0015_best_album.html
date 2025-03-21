@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>베스트앨범</title>
+    <script>
+      // https://school.programmers.co.kr/learn/courses/30/lessons/42579?language=javascript
+      // 내 풀이
+      // 시도 - 1: 성공
+      // 의도: 장르별 재생수 order 객체 생성 후 [order[genre], paly, index]로 sort
+      function solution(genres, plays) {
+        let order = {};
+        let sortArr = genres.map((v, i) => {
+          order[v] = order[v] ? order[v] + plays[i] : plays[i];
+          return [v, plays[i], i];
+        });
+        sortArr.sort(([genreA, palyA, idxA], [genreB, palyB, idxB]) =>
+          order[genreA] != order[genreB]
+            ? order[genreB] - order[genreA]
+            : palyA != palyB
+            ? palyB - palyA
+            : idxA - idxB
+        );
+        order = {};
+        return sortArr.reduce((p, [genre, _, i]) => {
+          if (order[genre] == 2) return p;
+          order[genre] = order[genre] ? 2 : 1;
+          p.push(i);
+          return p;
+        }, []);
+      }
+      // 타인 풀이: 미기재
+    </script>
+  </head>
+  <body></body>
+</html>
