@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>의상</title>
+    <script>
+      // https://school.programmers.co.kr/learn/courses/30/lessons/42578?language=javascript
+      // 내 풀이
+      // 시도 - 1: 성공
+      // 의도: 종류별로 공백을 추가하여 모든 경우의 조합 생성 후 - 1
+      function solution(clothes) {
+        let obj = clothes.reduce((p, [cloth, type]) => {
+          if (p[type]) {
+            p[type].push(cloth);
+          } else {
+            p[type] = ["", cloth];
+          }
+          return p;
+        }, {});
+
+        return Object.values(obj).reduce((p, c) => p * c.length, 1) - 1;
+      }
+      // 타인 풀이
+      // 방법은 동리하지만 더 간결
+      function solution(clothes) {
+        return (
+          Object.values(
+            clothes.reduce((obj, t) => {
+              // 타입 별 개수만 필요하여 숫자만 더함
+              obj[t[1]] = obj[t[1]] ? obj[t[1]] + 1 : 1;
+              return obj;
+            }, {})
+            // 안 입은 경우르 위해 `(b + 1)`
+          ).reduce((a, b) => a * (b + 1), 1) - 1
+        );
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
