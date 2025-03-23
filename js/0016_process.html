@@ -56,8 +56,8 @@
           }
         }
       }
-      // 2. 반복문이 하나이지만 매번 max값을 찾는 게 비효율 적인 것 같아 solution2과 비교하니 solution2가 빠르다 함
-      // 3. string을 비교하는 것과 객체의 속성을 비교하는 것 중 뭐가 더 빠른지 궁금하여 비교 하니 solution1이 더 빠름.
+      // 2. 반복문이 하나이지만 매번 max값을 찾는 게 비효율적인 것 같아 solution2과 비교하니 solution2가 빠르다 함
+      // 3. string을 비교하는 것과 객체의 속성을 비교하는 것 중 뭐가 더 빠른지 궁금하여 비교하니 solution1이 더 빠름.
       // 4. gpt는 코드 가독성(비직관적)을 이유로 공백을 사용하지 않고 index 사용.
       // 첫 번째 코드: `priorities[location] + " "`으로 비교
       function solution1(priorities, location) {
@@ -135,6 +135,8 @@
       );
       end = performance.now();
       console.log("Solution2 실행 시간:", (end - start).toFixed(4), "ms");
+
+      // 결론: gpt는 전체적인(효율성, 가독성 등) 관점에서 좋은 코드를 최적의 코드로 인식
     </script>
   </head>
   <body></body>
