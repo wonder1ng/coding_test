@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>최소직사각형</title>
+    <script>
+      // https://school.programmers.co.kr/learn/courses/30/lessons/86491?language=javascript
+      // 내 풀이
+      // 시도 - 1: 성공
+      // 배운 점: 없음
+      // 의도: 최대값 최소값 구분 후 큰 값 반환
+      function solution(sizes) {
+        return sizes
+          .reduce(
+            ([max, min], c) => [
+              Math.max(max, ...c),
+              Math.max(min, Math.min(...c)),
+            ],
+            [0, 0]
+          )
+          .reduce((p, c) => p * c, 1);
+      }
+      // 타인 풀이: 미기재
+    </script>
+  </head>
+  <body></body>
+</html>
