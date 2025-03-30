@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>모의고사</title>
+    <script>
+      // https://school.programmers.co.kr/learn/courses/30/lessons/42840?language=javascript
+      // 내 풀이
+      // 시도 - 1: 성공
+      // 배운 점: 없음
+      // 의도: 각 보기 별 1 순환 생성 후 각 비교
+      function solution(answers) {
+        let st2 = [2, 1, 2, 3, 2, 4, 2, 5];
+        let st3 = [3, 3, 1, 1, 2, 2, 4, 4, 5, 5];
+        let answer = [0, 0, 0];
+        for (let i = 0; i !== answers.length; i++) {
+          if ((i % 5) + 1 === answers[i]) answer[0]++;
+          if (st2[i % 8] === answers[i]) answer[1]++;
+          if (st3[i % 10] === answers[i]) answer[2]++;
+        }
+        let max = Math.max(...answer);
+        return answer.reduce(
+          (p, c, i) => (c === max ? p.concat([i + 1]) : p),
+          []
+        );
+      }
+      // 타인 풀이: 미기재
+    </script>
+  </head>
+  <body></body>
+</html>
