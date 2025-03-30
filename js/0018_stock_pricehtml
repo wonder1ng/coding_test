@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>주식가격</title>
+    <script>
+      // https://school.programmers.co.kr/learn/courses/30/lessons/42584?language=javascript
+      // 내 풀이
+      // 시도 - 1: 실패(효율성 테스트 실패)
+      // 원인: Array에 대한 낮은 이해도, 역량 부족
+      // 배운 점: Array가 shift를 지원하지만 사용 시 모든 원소 앞으로 당김.
+      // 의도: shift로 첫 원소 제거 및 findIndex로 값 찾고 push
+      function solution(prices) {
+        var answer = [];
+        while (prices.length) {
+          let target = prices.shift();
+          let time = prices.findIndex((v) => v < target) + 1;
+          answer.push(time ? time : prices.length);
+        }
+        return answer;
+      }
+      // ChatGPT 풀이
+      function solution(prices) {
+        let answer = new Array(prices.length).fill(0); // 미리 메모리 확보
+        let stack = []; // indices 넣을 배열
+
+        for (let i = 0; i < prices.length; i++) {
+          // stack의 가장 오래된 값(prices의 인덱스)으로 prices 값 조회하여 비교
+          while (stack.length && prices[stack[stack.length - 1]] > prices[i]) {
+            let idx = stack.pop();
+            answer[idx] = i - idx;
+          }
+          stack.push(i);
+        }
+        // 미하락 값들 시간 입력
+        while (stack.length > 0) {
+          let idx = stack.pop();
+          answer[idx] = prices.length - 1 - idx;
+        }
+
+        return answer;
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
