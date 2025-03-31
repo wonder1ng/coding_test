@@ -5,7 +5,7 @@
     <script>
       // https://school.programmers.co.kr/learn/courses/30/lessons/42584?language=javascript
       // 내 풀이
-      // 시도 - 1: 실패(효율성 테스트 실패)
+      // 시도 - 1: 실패(효율성 테스트 4/5 실패)
       // 원인: Array에 대한 낮은 이해도, 역량 부족
       // 배운 점: Array가 shift를 지원하지만 사용 시 모든 원소 앞으로 당김.
       // 의도: shift로 첫 원소 제거 및 findIndex로 값 찾고 push
@@ -15,6 +15,20 @@
           let target = prices.shift();
           let time = prices.findIndex((v) => v < target) + 1;
           answer.push(time ? time : prices.length);
+        }
+        return answer;
+      }
+      // 시도 - 2: 실패(효율성 테스트 5/5 실패 )
+      // 원인: unshift와 findIndex보다 느린 이중 반복 및 조건문
+      // 의도: pop()으로 해결
+      function solution(prices) {
+        let len = prices.length;
+        var answer = Array(len).fill(0);
+        for (let i = 0; i != len; i++) {
+          let target = prices.pop();
+          for (let j = 0; j != prices.length; j++) {
+            answer[j] = prices[j] > target ? 1 : answer[j] + 1;
+          }
         }
         return answer;
       }
