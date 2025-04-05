@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <title>카펫</title>
+    <script>
+      // https://school.programmers.co.kr/learn/courses/30/lessons/42842?language=javascript
+      // 내 풀이
+      // 시도 - 2: 성공
+      // 배운 점: 없음
+      // 의도: 꼭지점을 제외하면 갈색과 노랑의 변의 길이가 같으니 이를 이용
+      function solution(brown, yellow) {
+        const max = (brown - 4) / 2;
+        for (let i = 3; i < max; i++) {
+          let target = max - i;
+          if (yellow / i === target) return [target + 2, i + 2];
+        }
+      }
+      // 시도 - 1: 실패
+      // 배운 점: 테스트 케이스에 맞추지 말고 생각을 하자! 수학을 잘하자!
+      // 의도: 테스트 케이스 보니 최대공배수 구하면 될 것 같아 이를 이용
+      function solution(brown, yellow) {
+        const total = brown + yellow;
+        for (let i = Math.floor(Math.sqrt(total)); i != 0; i--) {
+          if (total % i === 0) return [total / i, i];
+        }
+      }
+      // 타인 풀이: hsj1514
+      // 배운 점: 수학을 열심히 공부하자!
+      function solution(brown, yellow) {
+        const x = (brown - 12) * 0.5;
+        const y = yellow - brown + 8;
+        const i = (8 + x + Math.sqrt(Math.pow(x, 2) - 4 * y)) * 0.5;
+        const j = (8 + x - Math.sqrt(Math.pow(x, 2) - 4 * y)) * 0.5;
+        console.log(i);
+
+        var answer = [i, j];
+        return answer;
+      }
+
+      // ChatGPT 풀이
+      // 배운 점: 마지막 yellow 검증 부분
+      function solution(brown, yellow) {
+        const total = brown + yellow;
+
+        for (let height = 3; height <= total; height++) {
+          const width = total / height;
+
+          if (!Number.isInteger(width)) continue;
+          if (width < height) continue;
+
+          const innerWidth = width - 2;
+          const innerHeight = height - 2;
+
+          if (innerWidth * innerHeight === yellow) {
+            return [width, height];
+          }
+        }
+      }
+      // 내가 개선한 내 코드
+      // `시도 - 2` 코드 개선
+      // 1. `let i = Math.floor(max / 2)`로 변경(3부터 시작하는 것보다 빠름)
+      // 2. 위의 변화로 값 비교 추가
+      function solution(brown, yellow) {
+        const max = (brown - 4) / 2;
+        for (let i = Math.floor(max / 2); i < max; i++) {
+          let target = max - i;
+          if (yellow / i === target)
+            return target > i ? [target + 2, i + 2] : [i + 2, target + 2];
+        }
+      }
+      // `시도 - 1` 코드 개선
+      // 1. yellow 검증 부분 추가 => 제곱근에서 시작이라 더 빠름
+      function solution(brown, yellow) {
+        const total = brown + yellow;
+        for (let i = Math.floor(Math.sqrt(total)); i != 0; i--) {
+          if (total % i === 0) {
+            const max = total / i;
+            if (yellow === (max - 2) * (i - 2)) return [max, i];
+          }
+        }
+      }
+    </script>
+  </head>
+  <body></body>
+</html>
